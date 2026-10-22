@@ -1,0 +1,11 @@
+export type MathOperation='addition'|'subtraction'|'multiplication'|'division';
+export type DifficultyLevel=1|2|3|4;
+export type SessionLength=5|10|20|'continuous';
+export type ReviewMode='regular'|'mistake-review';
+export interface Question{ id:string; operation:MathOperation; firstOperand:number; secondOperand:number; displayText:string; correctAnswer:number; choices:number[]; difficulty:DifficultyLevel; source:'regular'|'mistake-review'; mistakePatternId?:string; }
+export interface PracticeAttempt{ id:string; questionId:string; operation:MathOperation; firstOperand:number; secondOperand:number; correctAnswer:number; selectedAnswer:number|null; selfReportedCorrect:boolean; difficulty:DifficultyLevel; source:'regular'|'mistake-review'; attemptedAt:string; sessionId:string; mistakePatternId?:string; }
+export interface PracticeSession{ id:string; startedAt:string; completedAt?:string; operations:MathOperation[]; difficulty:DifficultyLevel; sessionLength:SessionLength; reviewMode:ReviewMode; attempted:number; correct:number; incorrect:number; }
+export interface MistakePattern{ id:string; operation:MathOperation; firstOperand:number; secondOperand:number; correctAnswer:number; difficulty:DifficultyLevel; incorrectCount:number; similarCorrectCount:number; lastIncorrectAt:string; mastered:boolean; }
+export interface AppSettings{ soundEffectsEnabled:boolean; cardAnimationEnabled:boolean; showExplanations:boolean; feedbackMessagesEnabled:boolean; defaultSessionLength:SessionLength; defaultDifficulty:DifficultyLevel; defaultOperations:MathOperation[]; masteryThreshold:number; }
+export interface ActivePracticeSnapshot{ session:PracticeSession; currentQuestion:Question; currentQuestionIndex:number; attempts:PracticeAttempt[]; selectedAnswer:number|null; revealed:boolean; }
+export interface AppStatistics{attempted:number;correct:number;incorrect:number;byOperation:Record<MathOperation,{attempted:number;correct:number;incorrect:number}>;byDifficulty:Record<DifficultyLevel,{attempted:number;correct:number;incorrect:number}>;}
