@@ -33,6 +33,10 @@ jobs:
           cp math-practice-react/TODO.md math-practice/TODO.md
           cp math-practice-react/PRIVACY.md math-practice/PRIVACY.md
           cp math-practice-react/DEPLOYMENT.md math-practice/DEPLOYMENT.md
+          cp math-practice-react/specification.md math-practice/specification.md
+          cp math-practice-react/TESTING.md math-practice/TESTING.md
+          cp math-practice-react/DEVELOPMENT_REPORT.md math-practice/DEVELOPMENT_REPORT.md
+          cp math-practice-react/AI_CONVERSATION_EVIDENCE.md math-practice/AI_CONVERSATION_EVIDENCE.md
       - name: Commit generated site
         run: |
           git config user.name github-actions[bot]
