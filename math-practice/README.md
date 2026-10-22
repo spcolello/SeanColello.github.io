@@ -1,42 +1,31 @@
 # Math Practice
 
-A child-friendly arithmetic practice web application for ages 7–12.
-
-## Live application
-https://spcolello.github.io/math-practice/
-
-## Source
-This folder contains the complete source for the submitted Math Practice application.
+A Vite + React + TypeScript arithmetic practice app for children ages 7–12.
 
 ## Features
 - Addition, subtraction, multiplication, and division
-- Easy, medium, and hard difficulty levels
-- 5, 10, or 20 question sessions
-- Four-choice interactive question cards
-- Reveal-answer flow with self-reporting
-- Correct/incorrect feedback and end-of-session summary
-- Persistent mistake tracking with similar-question practice
-- Overall statistics, per-operation accuracy, and recent session history
-- Browser persistence using localStorage
-- Responsive, keyboard-accessible UI
+- Four difficulty levels: Beginner, Easy, Intermediate, Advanced
+- 5, 10, 20, and continuous sessions
+- Four-choice question cards, reveal-answer flow, and self-reporting
+- Session summaries, mistake review, similar-question practice, mastery tracking
+- Statistics by operation and recent practice history
+- Settings/defaults, sound, animation, explanations, and encouraging feedback
+- localStorage persistence plus active-session recovery
+- Navigation protection during active sessions
+- Storage recovery and question-generation fallback behavior
+- Keyboard shortcuts 1–4, accessible labels, and reduced-motion support
+- Responsive mobile/tablet design
+- Privacy notice; no accounts, analytics, ads, or tracking
 
-## Run locally
-No dependency installation is required.
-
+## Development
 ```bash
-python3 -m http.server 4173
+npm install
+npm run dev
+npm run test
+npm run lint
+npm run build
+npm run verify
 ```
 
-Then open `http://localhost:4173/math-practice/` if serving from the repository root, or run the server from inside this folder and open `http://localhost:4173/`.
-
-## Tests
-From this folder:
-
-```bash
-npm test
-```
-
-The automated tests validate arithmetic correctness, integer-safe division, non-negative subtraction, unique multiple-choice answers, inclusion of the correct answer, and accuracy calculations. See `TESTING.md` for the manual verification checklist.
-
-## Persistence
-Practice data is stored only in the browser under the localStorage key `mathPracticeDataV1`.
+## Deployment
+Source is stored in `math-practice-react/`. GitHub Actions builds the Vite production bundle and publishes generated files into `math-practice/` for GitHub Pages.
