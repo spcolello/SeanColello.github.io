@@ -134,3 +134,33 @@ h2 { margin: 4px 0 16px; font-size: 1.25rem; }
   .summary-grid div { padding: 13px 7px; }
 }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto!important; transition: none!important; } }
+
+
+.sr-only { position:absolute!important; width:1px!important; height:1px!important; padding:0!important; margin:-1px!important; overflow:hidden!important; clip:rect(0,0,0,0)!important; white-space:nowrap!important; border:0!important; }
+.explanation { margin: 12px 0 18px; padding: 12px 14px; border-radius: 14px; background: #f7f7fb; color: var(--muted); font-weight: 700; }
+.summary-details { margin: -10px 0 22px; color: var(--muted); font-weight: 750; text-transform: capitalize; }
+.summary-actions { margin-top: 12px; }
+.mistake-tabs { margin-bottom: 18px; }
+.settings-grid { display: grid; gap: 0; }
+.setting-row, .setting-block { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--border); }
+.setting-row:last-child, .setting-block:last-child { border-bottom: 0; }
+.setting-row span, .setting-block { color: var(--text); }
+.setting-row small, .setting-block small { display:block; margin-top:4px; color:var(--muted); font-weight:500; }
+.setting-row input[type="checkbox"] { width: 22px; height: 22px; accent-color: var(--primary); }
+.setting-block select, .setting-block input[type="number"] { min-width: 150px; border: 1px solid var(--border); border-radius: 10px; padding: 9px 11px; background:white; color:var(--text); }
+.settings-ops { display:flex; flex-wrap:wrap; gap:10px 14px; justify-content:flex-end; }
+.settings-ops label { color:var(--muted); font-weight:700; }
+.settings-ops input { accent-color:var(--primary); }
+.danger-zone { margin-top:20px; }
+.danger-zone p { color:var(--muted); }
+.fact-list { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+.fact-list span { padding:8px 10px; border-radius:10px; background:#f7f7fb; border:1px solid var(--border); font-weight:800; }
+.fact-list small { color:var(--muted); font-weight:600; }
+.question-card.animated { animation: card-enter .22s ease-out; }
+@keyframes card-enter { from { opacity:.4; transform:translateY(7px) scale(.99); } to { opacity:1; transform:none; } }
+@media (prefers-reduced-motion: reduce) { .question-card.animated { animation:none; } }
+@media (max-width:700px) {
+  .setting-row, .setting-block { align-items:flex-start; flex-direction:column; }
+  .settings-ops { justify-content:flex-start; }
+  .setting-block select, .setting-block input[type="number"] { width:100%; }
+}
