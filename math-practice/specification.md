@@ -1,28 +1,29 @@
 # Math Practice Application Specification
 
-This implementation follows the functional requirements supplied in the assignment brief.
+This implementation follows the supplied assignment and the implementation details reflected in the provided reference materials.
 
-## Core requirements
+## Functional requirements
 - Support addition, subtraction, multiplication, and division.
-- Offer easy, medium, and hard difficulty levels.
-- Present questions as interactive multiple-choice cards.
-- Allow answer revelation and self-reporting when an answer is revealed.
-- Provide immediate visual feedback.
-- Configure sessions by operations, difficulty, and number of questions.
-- Track attempted, correct, and incorrect counts.
-- Present an end-of-session summary.
-- Persist missed questions for later review.
-- Generate similar questions based on a missed question's operation and difficulty.
-- Provide total and per-operation statistics plus practice history.
-- Persist data between browser sessions without user accounts.
-- Provide an attractive responsive interface suitable for ages 7–12.
+- Provide four levels: Beginner, Easy, Intermediate, and Advanced.
+- Configure sessions for 5, 10, 20, or Continuous practice.
+- Present each problem as an interactive four-choice question card.
+- Allow direct answer selection or Reveal Answer followed by self-reporting.
+- Provide visual/text feedback and optional explanations/sound.
+- Track attempted, correct, and incorrect answers.
+- Display a session summary with accuracy and follow-up actions.
+- Persist missed facts as mistake patterns.
+- Generate similar practice questions and track mastery progress.
+- Show total statistics, per-operation accuracy, mistake insights, and history.
+- Persist data and settings between browser sessions with localStorage.
+- Provide settings for defaults, feedback preferences, and mastery threshold.
+- Provide keyboard and screen-reader support and reduced-motion handling.
+- Be responsive and appropriate for children ages 7–12.
 
-## Question-generation rules used by this implementation
-- Easy addition/subtraction: operands up to 20.
-- Medium addition/subtraction: operands up to 100.
-- Hard addition/subtraction: operands up to 500.
-- Easy multiplication/division: factors/divisors up to 6.
-- Medium multiplication/division: factors/divisors up to 12.
-- Hard multiplication/division: factors/divisors up to 20.
-- Subtraction results are non-negative.
-- Division results are whole numbers and never divide by zero.
+## Question-generation rules
+- Beginner: small number facts; addition/subtraction constrained to 10; multiplication/division through 5.
+- Easy: addition/subtraction constrained to 20; multiplication/division through 10.
+- Intermediate: addition/subtraction through 100; multiplication/division through 12.
+- Advanced: larger addition/subtraction values and multiplication/division through 20, with some larger multiplication factors.
+- Subtraction results remain non-negative.
+- Division uses a nonzero divisor and always generates whole-number answers.
+- Each question contains four unique answer choices including the correct answer.
