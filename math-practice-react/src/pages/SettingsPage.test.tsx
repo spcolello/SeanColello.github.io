@@ -1,0 +1,3 @@
+import{beforeEach,describe,expect,it}from'vitest';import{render,screen}from'@testing-library/react';import userEvent from'@testing-library/user-event';import SettingsPage from'./SettingsPage';import{loadSettings}from'../services/storage';
+beforeEach(()=>localStorage.clear());
+describe('Settings',()=>{it('persists preference changes',async()=>{render(<SettingsPage/>);const user=userEvent.setup();const sound=screen.getByRole('checkbox',{name:/sound effects/i});await user.click(sound);expect(loadSettings().soundEffectsEnabled).toBe(false);});it('shows privacy information',()=>{render(<SettingsPage/>);expect(screen.getByRole('heading',{name:/privacy/i})).toBeInTheDocument();expect(screen.getByText(/no analytics/i)).toBeInTheDocument();});});
