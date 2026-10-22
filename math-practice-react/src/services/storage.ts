@@ -2,7 +2,7 @@ import type {ActivePracticeSnapshot,AppSettings,MistakePattern,PracticeAttempt,P
 const K={settings:'mathPractice.settings',sessions:'mathPractice.sessions',attempts:'mathPractice.attempts',mistakes:'mathPractice.mistakes',active:'mathPractice.activeSession',archive:'mathPractice.archive'};
 export const DEFAULT_SETTINGS:AppSettings={soundEffectsEnabled:true,cardAnimationEnabled:true,showExplanations:true,feedbackMessagesEnabled:true,defaultSessionLength:10,defaultDifficulty:2,defaultOperations:['addition','subtraction','multiplication','division'],masteryThreshold:3};
 const WARNING='mathPractice.storageRecoveryWarning';
-function markRecovery(key:string){try{const prior=sessionStorage.getItem(WARNING);const list=prior?prior.split(','):[];if(!list.includes(key))list.push(key);sessionStorage.setItem(WARNING,list.join(','));}catch{}}
+function markRecovery(key:string){try{const prior=sessionStorage.getItem(WARNING);const list=prior?prior.split(','):[];if(!list.includes(key))list.push(key);sessionStorage.setItem(WARNING,list.join(','));}catch{return;}}
 function read<T>(key:string,fallback:T,valid:(x:unknown)=>boolean=()=>true):T{try{const raw=localStorage.getItem(key);if(!raw)return fallback;const x=JSON.parse(raw);if(!valid(x)){localStorage.removeItem(key);markRecovery(key);return fallback;}return x as T;}catch{localStorage.removeItem(key);markRecovery(key);return fallback;}}
 function write(key:string,v:unknown){try{localStorage.setItem(key,JSON.stringify(v));return true;}catch{return false;}}
 export const loadSettings=()=>read<AppSettings>(K.settings,DEFAULT_SETTINGS,x=>!!x&&typeof x==='object');
@@ -20,4 +20,4 @@ export const loadArchive=()=>read<{attempted:number;correct:number;incorrect:num
 export function clearAll(){Object.values(K).forEach(k=>localStorage.removeItem(k));}
 export function storageUsage(){return Object.values(K).reduce((n,k)=>n+(localStorage.getItem(k)?.length??0),0);}
 export function getRecoveryWarning(){try{const raw=sessionStorage.getItem(WARNING);return raw?raw.split(',').filter(Boolean):[];}catch{return[];}}
-export function clearRecoveryWarning(){try{sessionStorage.removeItem(WARNING);}catch{}}
+export function clearRecoveryWarning(){try{sessionStorage.removeItem(WARNING);}catch{return;}}
