@@ -1,0 +1,39 @@
+name: Build Math Practice
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'math-practice-react/**'
+      - '.github/workflows/publish-math-practice.yml'
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install
+        working-directory: math-practice-react
+        run: npm install --no-audit --no-fund
+      - name: Test and build
+        working-directory: math-practice-react
+        run: npm run test && npm run build
+      - name: Publish build into GitHub Pages folder
+        run: |
+          rm -rf math-practice
+          mkdir -p math-practice
+          cp -R math-practice-react/dist/. math-practice/
+          cp math-practice-react/README.md math-practice/README.md
+          cp math-practice-react/TODO.md math-practice/TODO.md
+          cp math-practice-react/PRIVACY.md math-practice/PRIVACY.md
+          cp math-practice-react/DEPLOYMENT.md math-practice/DEPLOYMENT.md
+      - name: Commit generated site
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add math-practice
+          git diff --cached --quiet || git commit -m 'Build React Math Practice site'
+          git push
