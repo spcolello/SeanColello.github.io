@@ -1,6 +1,12 @@
 # Math Practice
 
-A child-friendly arithmetic practice web application for ages 7–12. The app supports addition, subtraction, multiplication, and division; multiple difficulty levels; configurable sessions; mistake review; similar-question practice; persistent statistics; and responsive layouts.
+A child-friendly arithmetic practice web application for ages 7–12.
+
+## Live application
+https://spcolello.github.io/math-practice/
+
+## Source
+This folder contains the complete source for the submitted Math Practice application.
 
 ## Features
 - Addition, subtraction, multiplication, and division
@@ -11,7 +17,7 @@ A child-friendly arithmetic practice web application for ages 7–12. The app su
 - Correct/incorrect feedback and end-of-session summary
 - Persistent mistake tracking with similar-question practice
 - Overall statistics, per-operation accuracy, and recent session history
-- Browser persistence using `localStorage`
+- Browser persistence using localStorage
 - Responsive, keyboard-accessible UI
 
 ## Run locally
@@ -21,21 +27,16 @@ No dependency installation is required.
 python3 -m http.server 4173
 ```
 
-Then open `http://localhost:4173`.
+Then open `http://localhost:4173/math-practice/` if serving from the repository root, or run the server from inside this folder and open `http://localhost:4173/`.
 
 ## Tests
+From this folder:
+
 ```bash
 npm test
 ```
 
-The automated tests validate arithmetic correctness, integer-safe division, non-negative subtraction, unique multiple-choice answers, inclusion of the correct answer, and accuracy calculations. See `TESTING.md` for manual verification.
+The automated tests validate arithmetic correctness, integer-safe division, non-negative subtraction, unique multiple-choice answers, inclusion of the correct answer, and accuracy calculations. See `TESTING.md` for the manual verification checklist.
 
-## Deploy to Netlify
-This is a static site. Connect this repository in Netlify and use:
-- Build command: leave blank
-- Publish directory: `.`
-
-`netlify.toml` configures refresh fallback.
-
-## Data storage
+## Persistence
 Practice data is stored only in the browser under the localStorage key `mathPracticeDataV1`.
